@@ -1,5 +1,5 @@
 //
-//  ZikrMainView.swift
+//  ZikrListView.swift
 //  ZikrCounter
 //
 //  Created by Daulet Ashikbayev on 08.01.2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-struct ZikrMainView: View {
+struct ZikListView: View {
     @State var zikrFormIsPresented = false
     @ObservedResults(Zikr.self) var zikrs
     
@@ -24,9 +24,6 @@ struct ZikrMainView: View {
     
     var body: some View {
             List {
-                ForEach(ZikrMock.defaultZikrProvider) { zikr in
-                    ZikrRowView(zikr: zikr)
-                }
                 ForEach(zikrs) { zikr in
                     ZikrRowView(zikr: zikr)
                 }
@@ -37,14 +34,14 @@ struct ZikrMainView: View {
     }
 }
 
-extension ZikrMainView {
+extension ZikListView {
   func openNewIngredient() {
     zikrFormIsPresented.toggle()
   }
 }
 
-struct ZikrMainView_Previews: PreviewProvider {
+struct ZikrListView_Previews: PreviewProvider {
     static var previews: some View {
-        ZikrMainView()
+        ZikListView()
     }
 }

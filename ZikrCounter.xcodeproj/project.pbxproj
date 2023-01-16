@@ -7,18 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20202C2B296AC00A00CF61F9 /* ZikrFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */; };
+		20305FC42974865A00904083 /* ColorGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20305FC32974865A00904083 /* ColorGradients.swift */; };
+		2087928D297028F3007FDCDD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087928C297028F3007FDCDD /* ViewModel.swift */; };
+		20895E76296AE8F1002234B6 /* ZikrListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20895E75296AE8F1002234B6 /* ZikrListView.swift */; };
+		20CD24CE296B401300796F02 /* ZikrCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD24CD296B401300796F02 /* ZikrCounterView.swift */; };
 		20FE9DA92968756400730DDB /* ZikrCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9DA82968756400730DDB /* ZikrCounterApp.swift */; };
 		20FE9DAB2968756400730DDB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9DAA2968756400730DDB /* ContentView.swift */; };
 		20FE9DAD2968756400730DDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FE9DAC2968756400730DDB /* Assets.xcassets */; };
 		20FE9DB02968756400730DDB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FE9DAF2968756400730DDB /* Preview Assets.xcassets */; };
+		20FE9DB72969BBA500730DDB /*  Zikr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9DB62969BBA500730DDB /*  Zikr.swift */; };
+		20FE9DBA2969BF1D00730DDB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 20FE9DB92969BF1D00730DDB /* Realm */; };
+		20FE9DBC2969BF1D00730DDB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 20FE9DBB2969BF1D00730DDB /* RealmSwift */; };
+		20FE9DC02969CE2300730DDB /* ZikrRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9DBF2969CE2300730DDB /* ZikrRowView.swift */; };
+		20FE9DC22969CEB500730DDB /* ZikrMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9DC12969CEB500730DDB /* ZikrMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrFormView.swift; sourceTree = "<group>"; };
+		20305FC32974865A00904083 /* ColorGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGradients.swift; sourceTree = "<group>"; };
+		2087928C297028F3007FDCDD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		20895E75296AE8F1002234B6 /* ZikrListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrListView.swift; sourceTree = "<group>"; };
+		20CD24CD296B401300796F02 /* ZikrCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrCounterView.swift; sourceTree = "<group>"; };
 		20FE9DA52968756400730DDB /* ZikrCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZikrCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FE9DA82968756400730DDB /* ZikrCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrCounterApp.swift; sourceTree = "<group>"; };
 		20FE9DAA2968756400730DDB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20FE9DAC2968756400730DDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20FE9DAF2968756400730DDB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20FE9DB62969BBA500730DDB /*  Zikr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Zikr.swift"; sourceTree = "<group>"; };
+		20FE9DBF2969CE2300730DDB /* ZikrRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrRowView.swift; sourceTree = "<group>"; };
+		20FE9DC12969CEB500730DDB /* ZikrMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FE9DBC2969BF1D00730DDB /* RealmSwift in Frameworks */,
+				20FE9DBA2969BF1D00730DDB /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +73,16 @@
 			children = (
 				20FE9DA82968756400730DDB /* ZikrCounterApp.swift */,
 				20FE9DAA2968756400730DDB /* ContentView.swift */,
+				20FE9DB62969BBA500730DDB /*  Zikr.swift */,
+				20305FC32974865A00904083 /* ColorGradients.swift */,
+				20895E75296AE8F1002234B6 /* ZikrListView.swift */,
+				20CD24CD296B401300796F02 /* ZikrCounterView.swift */,
+				2087928C297028F3007FDCDD /* ViewModel.swift */,
 				20FE9DAC2968756400730DDB /* Assets.xcassets */,
 				20FE9DAE2968756400730DDB /* Preview Content */,
+				20FE9DBF2969CE2300730DDB /* ZikrRowView.swift */,
+				20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */,
+				20FE9DC12969CEB500730DDB /* ZikrMock.swift */,
 			);
 			path = ZikrCounter;
 			sourceTree = "<group>";
@@ -83,6 +111,10 @@
 			dependencies = (
 			);
 			name = ZikrCounter;
+			packageProductDependencies = (
+				20FE9DB92969BF1D00730DDB /* Realm */,
+				20FE9DBB2969BF1D00730DDB /* RealmSwift */,
+			);
 			productName = ZikrCounter;
 			productReference = 20FE9DA52968756400730DDB /* ZikrCounter.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 20FE9D9C2968756300730DDB;
+			packageReferences = (
+				20FE9DB82969BF1D00730DDB /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 20FE9DA62968756400730DDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +172,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FE9DB72969BBA500730DDB /*  Zikr.swift in Sources */,
+				2087928D297028F3007FDCDD /* ViewModel.swift in Sources */,
 				20FE9DAB2968756400730DDB /* ContentView.swift in Sources */,
 				20FE9DA92968756400730DDB /* ZikrCounterApp.swift in Sources */,
+				20CD24CE296B401300796F02 /* ZikrCounterView.swift in Sources */,
+				20FE9DC22969CEB500730DDB /* ZikrMock.swift in Sources */,
+				20202C2B296AC00A00CF61F9 /* ZikrFormView.swift in Sources */,
+				20305FC42974865A00904083 /* ColorGradients.swift in Sources */,
+				20895E76296AE8F1002234B6 /* ZikrListView.swift in Sources */,
+				20FE9DC02969CE2300730DDB /* ZikrRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +382,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20FE9DB82969BF1D00730DDB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.33.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20FE9DB92969BF1D00730DDB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20FE9DB82969BF1D00730DDB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		20FE9DBB2969BF1D00730DDB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20FE9DB82969BF1D00730DDB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 20FE9D9D2968756300730DDB /* Project object */;
 }
