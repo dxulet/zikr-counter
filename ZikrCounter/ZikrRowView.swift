@@ -87,6 +87,6 @@ extension ZikrRowView {
 
 struct ZikrRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ZikrRowView(zikr: ZikrMock.zikr1)
+        ZikrRowView(zikr: ZikrMock.salawat)
     }
 }

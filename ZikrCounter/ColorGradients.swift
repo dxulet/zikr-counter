@@ -6,27 +6,25 @@
 //
 
 import SwiftUI
+import RealmSwift
 
-enum ColorGradients: CaseIterable {
+enum ColorGradients: Int, CaseIterable, PersistableEnum {
     
     case customgrad
     case blueblack
     case greenblack
+    case tealBlack
     
-    var colors: [Color] {
+    var zikrColors: [Color] {
         switch self {
         case .customgrad:
-            return [Color(red: 0.146, green: 0.425, blue: 0.52),
-                    Color(red: 0.002, green: 0.168, blue: 0.358)
-                    ]
+            return [Color("lightBlue"), Color("darkBlue")]
         case .blueblack:
             return [Color.blue, Color.black]
         case .greenblack:
             return [Color.green, Color.black]
+        case .tealBlack:
+            return [Color.teal, Color.black]
         }
-    }
-    
-    var color: Color {
-        Color(rawValue)
     }
 }

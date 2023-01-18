@@ -16,35 +16,38 @@ struct ZikrCounterView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                // Apply gradient background
-                LinearGradient(colors: zikr.colors,
-                               startPoint: .topLeading,
-                               endPoint: . trailing
-                )
-                .ignoresSafeArea()
-                VStack {
-                    // Use a PageView to display all zikrs
-                    PageView(selection: $zikr.id,
-                             indexDisplayMode: .always,
-                             indexBackgroundDisplayMode: .interactive
-                    ) {
-                        ForEach(zikrs) { zikr in
+            // Use a PageView to display all zikrs
+            ScrollView {
+                PageView(selection: $zikr.id,
+                         indexDisplayMode: .always,
+                         indexBackgroundDisplayMode: .interactive
+                ) {
+                    ForEach(zikrs) { zikr in
+                        ZStack {
+                            // Apply gradient background
+                            LinearGradient(
+                                colors: zikr.numToGradient(num: zikr.colors),
+                                startPoint: .topLeading,
+                                endPoint: .trailing)
                             ZikrInfoView(zikr: zikr)
                         }
                     }
                 }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ZikListView()) {
-                        Image("menu")
-                            .renderingMode(.template)
-                            .foregroundColor(.white)
+                .frame(width: UIScreen.main.bounds.width,
+                       height: UIScreen.main.bounds.height)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: ZikListView()) {
+                            Image("menu")
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                        }
                     }
                 }
             }
-        }.onAppear(perform: viewModel.loadZikrs)
+            .ignoresSafeArea()
+        }
+        .onAppear(perform: viewModel.loadZikrs)
     }
 }
 
@@ -53,55 +56,40 @@ struct ZikrInfoView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                // Create a rounded rectangle for the background
-                Rectangle()
-                    .frame(width: 350, height: 400)
-                    .background(.ultraThinMaterial)
+            // Rounded Rectangle Zikr Info
+            VStack {
+                Text("\(zikr.arabic)")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .opacity(0.9)
+                    .padding(.bottom, 4)
+                    .padding(.leading)
+                    .padding(.trailing)
+                Text("\(zikr.pronunciation)")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
                     .opacity(0.8)
-                    .cornerRadius(15)
-                VStack {
-                    VStack {
-                        Text("\(zikr.arabic)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .opacity(0.9)
-                            .lineLimit(5)
-                            .padding(.bottom, 4)
-                            .padding(.leading)
-                            .padding(.trailing)
-                        Text("\(zikr.pronunciation)")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .opacity(0.8)
-                            .multilineTextAlignment(.center)
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
-                        Text("\(zikr.translation)")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                            .opacity(0.8)
-                            .multilineTextAlignment(.center)
-                            .padding(.trailing)
-                            .padding(.leading)
-                    }.padding(.bottom, 20)
-                    
-                    HStack {
-                        Spacer()
-                        Text("\(zikr.hadith)")
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                            .opacity(0.6)
-                            .font(.system(size: 14))
-                            .padding(.top, 4)
-                            .padding(.leading, 40)
-                            .padding(.trailing, 40)
-                        Spacer()
-                    }
-                }
+                    .multilineTextAlignment(.center)
+                Text("\(zikr.translation)")
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .opacity(0.8)
+                    .multilineTextAlignment(.center)
+                Text("\(zikr.hadith)")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                    .opacity(0.6)
+                    .font(.system(size: 14))
+                    .padding()
             }
+            .frame(width: 350, height: 400)
+            .background(.blendMode(.darken))
+            .background(.ultraThinMaterial)
+            .opacity(0.9)
+            .cornerRadius(15)
+            .padding(.top, 50)
             CounterView(zikr: zikr)
         }
     }

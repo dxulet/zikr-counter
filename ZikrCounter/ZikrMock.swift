@@ -32,7 +32,7 @@ enum ZikrMock {
         zikr.pronunciation = "Alhamdulillah"
         zikr.translation = "Praise be to Allah"
         zikr.hadith = "Әбу Һурайрадан (р.а.) жеткен Мүслімдегі риуаятта Алла елшісі былай дейді: «Кім де кім әрбір намаздан кейін 33 рет «Сұбханаллаһ», 33 рет «Алхамдулиллаһ», 33 рет «Аллаһу әкбар» десе, бәрін қосқанда тоқсан тоғыз болады, ал жүзіншісінде «Лә иләәһа иллаллаһу уахдаһу лә шариика ләһ, ләһул-мулку уә ләһулхамду уа һуа алаа кулли шаийн қадиир», деп, айтса, теңіз толқынының көбігіндей күнәсі болса да, кешіріледі»"
-        zikr.colors = ColorGradients.blueblack.colors
+        zikr.colors = ColorGradients.blueblack.rawValue
         return zikr
     }
     
@@ -46,7 +46,7 @@ enum ZikrMock {
         zikr.pronunciation = "Subhanallah"
         zikr.translation = "Glory be to Allah"
         zikr.hadith = "Әбу Һурайрадан (р.а.) жеткен Мүслімдегі риуаятта Алла елшісі былай дейді: «Кім де кім әрбір намаздан кейін 33 рет «Сұбханаллаһ», 33 рет «Алхамдулиллаһ», 33 рет «Аллаһу әкбар» десе, бәрін қосқанда тоқсан тоғыз болады, ал жүзіншісінде «Лә иләәһа иллаллаһу уахдаһу лә шариика ләһ, ләһул-мулку уә ләһулхамду уа һуа алаа кулли шаийн қадиир», деп, айтса, теңіз толқынының көбігіндей күнәсі болса да, кешіріледі»"
-        zikr.colors = ColorGradients.greenblack.colors
+        zikr.colors = ColorGradients.greenblack.rawValue
         return zikr
     }
     
@@ -73,7 +73,7 @@ enum ZikrMock {
         zikr.pronunciation = "Allahumma salli 'alaa muhammadin wa 'alaa aali muhammad"
         zikr.translation = "Уа, Алла! Мұхаммедке және оның әулетіне салауат жолдай гөр"
         zikr.hadith = "Ардақты Пайғамбарымыз (оған Алланың салауаты мен сәлемі болсын): «Кім маған бір салауат айтса, Алла Тағала оған он салауат айтады», – деген (имам Муслим)."
-        zikr.colors = ColorGradients.blueblack.colors
+        zikr.colors = ColorGradients.tealBlack.rawValue
         return zikr
     }
     
