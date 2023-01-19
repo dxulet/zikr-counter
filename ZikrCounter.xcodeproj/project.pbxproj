@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20202C2B296AC00A00CF61F9 /* ZikrFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */; };
 		20305FC42974865A00904083 /* ColorGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20305FC32974865A00904083 /* ColorGradients.swift */; };
+		206349912979D61300E010A2 /* clickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 206349902979D61300E010A2 /* clickSound.wav */; };
 		2087928D297028F3007FDCDD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087928C297028F3007FDCDD /* ViewModel.swift */; };
 		20895E76296AE8F1002234B6 /* ZikrListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20895E75296AE8F1002234B6 /* ZikrListView.swift */; };
 		20CD24CE296B401300796F02 /* ZikrCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD24CD296B401300796F02 /* ZikrCounterView.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrFormView.swift; sourceTree = "<group>"; };
 		20305FC32974865A00904083 /* ColorGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGradients.swift; sourceTree = "<group>"; };
+		206349902979D61300E010A2 /* clickSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickSound.wav; sourceTree = "<group>"; };
 		2087928C297028F3007FDCDD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		20895E75296AE8F1002234B6 /* ZikrListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrListView.swift; sourceTree = "<group>"; };
 		20CD24CD296B401300796F02 /* ZikrCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrCounterView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		206349922979D62B00E010A2 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				206349902979D61300E010A2 /* clickSound.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		206349932979D64B00E010A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20CD24CD296B401300796F02 /* ZikrCounterView.swift */,
+				20895E75296AE8F1002234B6 /* ZikrListView.swift */,
+				20FE9DBF2969CE2300730DDB /* ZikrRowView.swift */,
+				20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		206349942979D67B00E010A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20FE9DB62969BBA500730DDB /*  Zikr.swift */,
+				20FE9DC12969CEB500730DDB /* ZikrMock.swift */,
+				20305FC32974865A00904083 /* ColorGradients.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		206349952979D69600E010A2 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				2087928C297028F3007FDCDD /* ViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		20FE9D9C2968756300730DDB = {
 			isa = PBXGroup;
 			children = (
@@ -73,16 +112,12 @@
 			children = (
 				20FE9DA82968756400730DDB /* ZikrCounterApp.swift */,
 				20FE9DAA2968756400730DDB /* ContentView.swift */,
-				20FE9DB62969BBA500730DDB /*  Zikr.swift */,
-				20305FC32974865A00904083 /* ColorGradients.swift */,
-				20895E75296AE8F1002234B6 /* ZikrListView.swift */,
-				20CD24CD296B401300796F02 /* ZikrCounterView.swift */,
-				2087928C297028F3007FDCDD /* ViewModel.swift */,
+				206349932979D64B00E010A2 /* Views */,
+				206349952979D69600E010A2 /* View Model */,
+				206349942979D67B00E010A2 /* Models */,
+				206349922979D62B00E010A2 /* Sound */,
 				20FE9DAC2968756400730DDB /* Assets.xcassets */,
 				20FE9DAE2968756400730DDB /* Preview Content */,
-				20FE9DBF2969CE2300730DDB /* ZikrRowView.swift */,
-				20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */,
-				20FE9DC12969CEB500730DDB /* ZikrMock.swift */,
 			);
 			path = ZikrCounter;
 			sourceTree = "<group>";
@@ -162,6 +197,7 @@
 			files = (
 				20FE9DB02968756400730DDB /* Preview Assets.xcassets in Resources */,
 				20FE9DAD2968756400730DDB /* Assets.xcassets in Resources */,
+				206349912979D61300E010A2 /* clickSound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +354,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -347,6 +384,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

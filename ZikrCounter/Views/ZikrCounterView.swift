@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealmSwift
+import AVFoundation
 
 struct ZikrCounterView: View {
     @ObservedRealmObject var zikr: Zikr
@@ -85,7 +86,7 @@ struct ZikrInfoView: View {
                     .padding()
             }
             .frame(width: 350, height: 400)
-            .background(.blendMode(.darken))
+            .background(.opacity(1))
             .background(.ultraThinMaterial)
             .opacity(0.9)
             .cornerRadius(15)
@@ -97,6 +98,8 @@ struct ZikrInfoView: View {
 
 struct CounterView: View {
     @ObservedRealmObject var zikr: Zikr
+    private let generator = UINotificationFeedbackGenerator()
+    private static var player: AVAudioPlayer!
     
     var body: some View {
         VStack {
@@ -151,6 +154,18 @@ extension CounterView {
             zikr.thaw()?.current += 1
             zikr.thaw()?.total += 1
         }
+        if Int(zikr.current) % 33 == 0 {
+            generator.notificationOccurred(.success)
+        }
+        playZikrSound()
+    }
+    
+    // function to play sound on click
+    func playZikrSound() {
+        let url = Bundle.main.url(forResource: "clickSound", withExtension: "wav")
+        CounterView.player = try! AVAudioPlayer(contentsOf: url!)
+        CounterView.player.prepareToPlay()
+        CounterView.player.play()
     }
     
     // function to reset the zikr

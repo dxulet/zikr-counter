@@ -50,18 +50,19 @@ enum ZikrMock {
         return zikr
     }
     
-//    static var zikr4: Zikr {
-//        let zikr = Zikr()
-//        zikr.zikrName = "La ilaha illallahu wahdahu la sharika lah"
-//        zikr.current = 0
-//        zikr.target = 100
-//        zikr.total = 0
-//        zikr.arabic = "لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَىْءٍ قَدِيرٌ‏"
-//        zikr.pronunciation = "La ilaha illallahu wahdahu la sharika lahu lahul mulku wa lahul hamdu wa huwa ala kulli shay in qadeer"
-//        zikr.translation = "There is no god but Allah, the One, having no partner with Him. Sovereignty belongs to Him and all the praise is due to Him, and He is Potent over everything"
-//        zikr.hadith = "Әбу Һурайра (р.а.) риуаят еткен хадисте: «Кімде-кім: «Лә иләһә иллә Аллаһу, уахдаһу лә шәрикә ләһ, ләһул-мулку уә ләһул-хамду, уә һуә ъәлә кулли шәйин Қодир»,-деп күніне жүз рет айтса, он құлды азат еткенмен тең болады. Және де оған жүз сауап жазылып, жүз жамандығы өшіріледі. Және (дұғасы) сол күні кеш батқанша шайтаннан қорған болмақ. Ешкім бұдан абзал сөз айта алмайды. Тек одан көбірек айтқан адам болмаса»,-деген. (Бұхари, Муслим)"
-//        return zikr
-//    }
+    static var zikr4: Zikr {
+        let zikr = Zikr()
+        zikr.title = "La ilaha illallahu wahdahu la sharika lah"
+        zikr.current = 0
+        zikr.target = 100
+        zikr.total = 0
+        zikr.arabic = "لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَىْءٍ قَدِيرٌ‏"
+        zikr.pronunciation = "La ilaha illallahu wahdahu la sharika lahu lahul mulku wa lahul hamdu wa huwa ala kulli shay in qadeer"
+        zikr.translation = "There is no god but Allah, the One, having no partner with Him. Sovereignty belongs to Him and all the praise is due to Him, and He is Potent over everything"
+        zikr.hadith = "Әбу Һурайра (р.а.) риуаят еткен хадисте: «Кімде-кім: «Лә иләһә иллә Аллаһу, уахдаһу лә шәрикә ләһ, ләһул-мулку уә ләһул-хамду, уә һуә ъәлә кулли шәйин Қодир»,-деп күніне жүз рет айтса, он құлды азат еткенмен тең болады. Және де оған жүз сауап жазылып, жүз жамандығы өшіріледі. Және (дұғасы) сол күні кеш батқанша шайтаннан қорған болмақ. Ешкім бұдан абзал сөз айта алмайды. Тек одан көбірек айтқан адам болмаса»,-деген. (Бұхари, Муслим)"
+        zikr.colors = ColorGradients.instaGrad.rawValue
+        return zikr
+    }
     
     static var salawat: Zikr {
         let zikr = Zikr()
@@ -78,6 +79,6 @@ enum ZikrMock {
     }
     
     static var defaultZikrProvider = [
-        zikr1, zikr2, zikr3, salawat
+        zikr1, zikr2, zikr3, zikr4, salawat
     ]
 }

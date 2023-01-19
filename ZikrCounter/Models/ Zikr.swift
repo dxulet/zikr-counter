@@ -26,7 +26,8 @@ extension Zikr {
         if num == 0 { return ColorGradients.customgrad.zikrColors }
         else if num == 1 { return ColorGradients.blueblack.zikrColors }
         else if num == 2 { return ColorGradients.greenblack.zikrColors }
-        else { return ColorGradients.tealBlack.zikrColors }
+        else if num == 3 { return ColorGradients.tealBlack.zikrColors }
+        else { return ColorGradients.instaGrad.zikrColors}
     }
 }
 
