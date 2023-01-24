@@ -38,6 +38,12 @@ struct ZikrCounterView: View {
                        height: UIScreen.main.bounds.height)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "gearshape")
+                                .foregroundColor(.white)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
                         NavigationLink(destination: ZikListView()) {
                             Image("menu")
                                 .renderingMode(.template)
@@ -57,11 +63,9 @@ struct ZikrInfoView: View {
     
     var body: some View {
         VStack {
-            // Rounded Rectangle Zikr Info
             VStack {
                 Text("\(zikr.arabic)")
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                    .font(.title)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .opacity(0.9)
@@ -69,27 +73,23 @@ struct ZikrInfoView: View {
                     .padding(.leading)
                     .padding(.trailing)
                 Text("\(zikr.pronunciation)")
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .opacity(0.8)
                     .multilineTextAlignment(.center)
+                    .padding(.leading)
+                    .padding(.trailing)
                 Text("\(zikr.translation)")
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .opacity(0.8)
                     .multilineTextAlignment(.center)
-                Text("\(zikr.hadith)")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .opacity(0.6)
-                    .font(.system(size: 14))
-                    .padding()
+                    .padding(.leading)
+                    .padding(.trailing)
             }
-            .frame(width: 350, height: 400)
-            .background(.opacity(1))
-            .background(.ultraThinMaterial)
-            .opacity(0.9)
-            .cornerRadius(15)
+            .frame(width: 350, height: 350)
+            .background(.ultraThinMaterial.blendMode(.softLight).opacity(0.76), in: RoundedRectangle(cornerRadius: 8,
+                                                                                                     style: .continuous))
             .padding(.top, 50)
             CounterView(zikr: zikr)
         }
@@ -100,6 +100,8 @@ struct CounterView: View {
     @ObservedRealmObject var zikr: Zikr
     private let generator = UINotificationFeedbackGenerator()
     private static var player: AVAudioPlayer!
+    @AppStorage("vibrationEnabled") var vibrationEnabled = true
+    @AppStorage("soundEnabled") var soundEnabled = true
     
     var body: some View {
         VStack {
@@ -137,9 +139,10 @@ struct CounterView: View {
             .padding()
         }
         Button(action: reset) {
-            Label("Reset", systemImage: "arrow.clockwise").labelStyle(.iconOnly).foregroundColor(Color.infoColor)
+            Label("Reset", systemImage: "arrow.clockwise").labelStyle(.iconOnly).foregroundColor(Color.infoColor).font(.title2)
         }
         .buttonStyle(.plain)
+        .padding()
     }
 }
 
@@ -154,10 +157,14 @@ extension CounterView {
             zikr.thaw()?.current += 1
             zikr.thaw()?.total += 1
         }
-        if Int(zikr.current) % 33 == 0 {
-            generator.notificationOccurred(.success)
+        if vibrationEnabled {
+            if Int(zikr.current) % 33 == 0 {
+                generator.notificationOccurred(.success)
+            }
         }
-        playZikrSound()
+        if soundEnabled {
+            playZikrSound()
+        }
     }
     
     // function to play sound on click
