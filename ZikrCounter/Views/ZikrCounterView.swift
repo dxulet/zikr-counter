@@ -12,8 +12,9 @@ import AVFoundation
 struct ZikrCounterView: View {
     @ObservedRealmObject var zikr: Zikr
     @ObservedResults(Zikr.self) var zikrs
+    @State private var menuBarPresented = false
     @ObservedObject var viewModel = ViewModel()
-    @Environment(\.realm) var realm
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
@@ -44,10 +45,17 @@ struct ZikrCounterView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink(destination: ZikListView()) {
+                        Button {
+                            menuBarPresented.toggle()
+                        } label: {
                             Image("menu")
                                 .renderingMode(.template)
                                 .foregroundColor(.white)
+                        }
+                        .buttonStyle(.plain)
+                        .sheet(isPresented: $menuBarPresented) {
+                            ZikrListView()
+                                .presentationDetents([.fraction(0.6), .large])
                         }
                     }
                 }
@@ -66,7 +74,6 @@ struct ZikrInfoView: View {
             VStack {
                 Text("\(zikr.arabic)")
                     .font(.title)
-                    .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .opacity(0.9)
                     .padding(.bottom, 4)
@@ -74,23 +81,30 @@ struct ZikrInfoView: View {
                     .padding(.trailing)
                 Text("\(zikr.pronunciation)")
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
                     .opacity(0.8)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
                     .padding(.trailing)
                 Text("\(zikr.translation)")
                     .font(.subheadline)
-                    .foregroundColor(.white)
                     .opacity(0.8)
                     .multilineTextAlignment(.center)
                     .padding(.leading)
                     .padding(.trailing)
             }
             .frame(width: 350, height: 350)
-            .background(.ultraThinMaterial.blendMode(.softLight).opacity(0.76), in: RoundedRectangle(cornerRadius: 8,
-                                                                                                     style: .continuous))
+            .background(.ultraThinMaterial.blendMode(.softLight).opacity(0.76),
+                        in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .foregroundColor(.white)
             .padding(.top, 50)
+            Button(action: reset) {
+                Label("Reset", systemImage: "arrow.clockwise.circle").labelStyle(.iconOnly).foregroundColor(.white).font(.largeTitle).fontWeight(.light)
+            }
+            .opacity(0.45)
+            .buttonStyle(.plain)
+            .padding(.top, 33)
+            .padding(.bottom, -40)
+            .padding(.leading, 250)
             CounterView(zikr: zikr)
         }
     }
@@ -104,42 +118,34 @@ struct CounterView: View {
     @AppStorage("soundEnabled") var soundEnabled = true
     
     var body: some View {
-        VStack {
-            Button(action: countUp) {
-                ZStack {
-                    Circle()
-                        .frame(width: 300, height: 250)
-                        .background(.ultraThinMaterial)
-                        .clipShape(Circle())
-                        .opacity(0.1)
-                    CircularProgressView(
-                        current: $zikr.current,
-                        goal: $zikr.target,
-                        width: 10,
-                        color: Color.infoColor.opacity(0.8)
-                    )
-                    .frame(width: 300, height: 240)
-                    VStack {
-                        Text("\(Int(zikr.current))/\(Int(zikr.target))")
-                            .foregroundColor(
-                                zikr.current >= zikr.target ?
-                                Color.reachedColor : Color.infoColor.opacity(0.9)
-                            )
-                            .font(.system(size: 33))
-                            .fontWeight(.heavy)
-                        
-                        Text("\(Int(zikr.total))")
-                            .font(.subheadline)
-                            .foregroundColor(Color.infoColor)
-                            .opacity(0.7)
-                    }
+        Button(action: withAnimation { countUp }) {
+            ZStack {
+                Circle()
+                    .background(.ultraThinMaterial, in: Circle())
+                    .frame(width: 300, height: 250)
+                    .opacity(0.1)
+                CircularProgressView(
+                    current: $zikr.current,
+                    goal: $zikr.target,
+                    width: 10,
+                    color: Color.infoColor.opacity(0.8)
+                )
+                .frame(width: 300, height: 240)
+                VStack {
+                    Text("\(Int(zikr.current))")
+                        .foregroundColor(
+                            zikr.current >= zikr.target ?
+                            Color.reachedColor.opacity(0.8) : Color.infoColor.opacity(0.8)
+                        )
+                        .font(.system(size: 33))
+                        .fontWeight(.heavy)
+                    
+                    Text("\(Int(zikr.total))")
+                        .font(.subheadline)
+                        .foregroundColor(Color.infoColor)
+                        .opacity(0.7)
                 }
             }
-            .buttonStyle(.plain)
-            .padding()
-        }
-        Button(action: reset) {
-            Label("Reset", systemImage: "arrow.clockwise").labelStyle(.iconOnly).foregroundColor(Color.infoColor).font(.title2)
         }
         .buttonStyle(.plain)
         .padding()
@@ -174,7 +180,9 @@ extension CounterView {
         CounterView.player.prepareToPlay()
         CounterView.player.play()
     }
-    
+}
+
+extension ZikrInfoView {
     // function to reset the zikr
     func reset() {
         let realm = try! Realm()

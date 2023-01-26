@@ -68,6 +68,7 @@ enum ZikrMock {
         zikr.pronunciation = "La ilaha illallah"
         zikr.translation = "There is none worthy of worship except Allah"
         zikr.hadith = "On the virtue of those who praise Allah (سُبْحَٰنَهُۥ وَتَعَٰلَىٰ). This dhikr also affirms Allah's oneness, a concept known as Tawhid, a central tenet of Islam. Jabir bin 'Abdullah said: \"I heard the Messenger of Allah (ﷺ) say: 'The best of remembrance is La ilaha illallah (None has the right to be worshiped but Allah), and the best of supplication is Al-Hamdu Lillah (praise is to Allah).'\""
+        zikr.colors = ColorGradients.zikrColor.rawValue
         return zikr
     }
     
@@ -96,9 +97,7 @@ enum ZikrMock {
     static var salawat: Zikr {
         let zikr = Zikr()
         zikr.title = "Salawat"
-        zikr.current = 0
         zikr.target = 100
-        zikr.total = 0
         zikr.arabic = "أللهُمَّ صَلِّ علىَ مُحَمَّدٍ وَ علَى آلِ مُحمدٍ"
         zikr.pronunciation = "Allahumma salli 'alaa muhammadin wa 'alaa aali muhammad"
         zikr.translation = "Уа, Алла! Мұхаммедке және оның әулетіне салауат жолдай гөр"

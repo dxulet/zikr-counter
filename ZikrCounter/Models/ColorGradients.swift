@@ -15,6 +15,7 @@ enum ColorGradients: Int, CaseIterable, PersistableEnum {
     case greenblack
     case tealBlack
     case instaGrad
+    case zikrColor
     
     var zikrColors: [Color] {
         switch self {
@@ -28,6 +29,8 @@ enum ColorGradients: Int, CaseIterable, PersistableEnum {
             return [Color.teal, Color.black]
         case .instaGrad:
             return [.purple, .blue]
+        case .zikrColor:
+            return [Color("zikrColor")]
         }
     }
 }

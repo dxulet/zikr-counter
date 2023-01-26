@@ -21,7 +21,7 @@ struct ZikrFormView: View {
         NavigationView {
             Form {
                 TextField("Zikr Name", text: $zikr.title)
-                TextField("Goal Quantity", value: $zikr.target, formatter: Formatter.numberFormatter)
+                TextField("Goal Quantity", value: $zikr.target, formatter: .numberFormatter)
                     .keyboardType(.decimalPad)
                 TextField("Enter a translation", text: $zikr.translation)
                 TextField("Enter a trascription", text: $zikr.pronunciation)

@@ -8,40 +8,53 @@
 import SwiftUI
 import RealmSwift
 
-struct ZikListView: View {
+struct ZikrListView: View {
     @State var zikrFormIsPresented = false
+    @Environment(\.dismiss) var dismiss
     @ObservedResults(Zikr.self) var zikrs
     
     @ViewBuilder var newZikrButton: some View {
-      Button(action: openNewIngredient) {
-        Label("Custom Zikr", systemImage: "plus.circle.fill")
-      }
-      .foregroundColor(.green)
-      .sheet(isPresented: $zikrFormIsPresented) {
-        ZikrFormView(zikr: Zikr())
-      }
+        Button(action: openNewIngredient) {
+            Label("Custom Zikr", systemImage: "plus.circle.fill")
+        }
+        .foregroundColor(.green)
+        .sheet(isPresented: $zikrFormIsPresented) {
+            ZikrFormView(zikr: Zikr())
+        }
     }
     
     var body: some View {
+        NavigationView {
             List {
                 ForEach(zikrs) { zikr in
                     ZikrRowView(zikr: zikr)
                 }
-                .onDelete(perform: $zikrs.remove)
                 newZikrButton
             }
             .navigationTitle("My Zikrs 📿")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Label("", systemImage: "xmark").labelStyle(.iconOnly).foregroundColor(Color("zikrColor"))
+                    }
+                }
+            }
+        }
+        .interactiveDismissDisabled()
     }
 }
 
-extension ZikListView {
-  func openNewIngredient() {
-    zikrFormIsPresented.toggle()
-  }
+extension ZikrListView {
+    func openNewIngredient() {
+        zikrFormIsPresented.toggle()
+    }
 }
 
 struct ZikrListView_Previews: PreviewProvider {
     static var previews: some View {
-        ZikListView()
+        ZikrListView()
     }
 }

@@ -16,7 +16,6 @@ struct SettingsView: View {
     @AppStorage("dailyReminderTime") var dailyReminderTimeShadow: Double = 0
     
     var body: some View {
-        NavigationView {
             List {
                 Section("Zikrs") {
                     Toggle("Vibration in every 33", isOn: $vibrationEnabled)
@@ -52,8 +51,7 @@ struct SettingsView: View {
                 dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
             }
             .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-        }
+            .navigationBarTitleDisplayMode(.large)
     }
     
     func configureNotification() {
