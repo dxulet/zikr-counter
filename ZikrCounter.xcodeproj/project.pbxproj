@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20202C2B296AC00A00CF61F9 /* ZikrFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */; };
 		20305FC42974865A00904083 /* ColorGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20305FC32974865A00904083 /* ColorGradients.swift */; };
+		2055AA6E29880D70002407ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2055AA6D29880D70002407ED /* Extensions.swift */; };
 		206349912979D61300E010A2 /* clickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 206349902979D61300E010A2 /* clickSound.wav */; };
 		20634997297C04F200E010A2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20634996297C04F200E010A2 /* SettingsView.swift */; };
 		2063499A297C0CEE00E010A2 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20634999297C0CEE00E010A2 /* LocalNotifications.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		20202C2A296AC00A00CF61F9 /* ZikrFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZikrFormView.swift; sourceTree = "<group>"; };
 		20305FC32974865A00904083 /* ColorGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGradients.swift; sourceTree = "<group>"; };
+		2055AA6D29880D70002407ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		206349902979D61300E010A2 /* clickSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickSound.wav; sourceTree = "<group>"; };
 		20634996297C04F200E010A2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		20634999297C0CEE00E010A2 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				20634999297C0CEE00E010A2 /* LocalNotifications.swift */,
+				2055AA6D29880D70002407ED /* Extensions.swift */,
 			);
 			path = " Utils";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				20CD24CE296B401300796F02 /* ZikrCounterView.swift in Sources */,
 				20FE9DC22969CEB500730DDB /* ZikrMock.swift in Sources */,
 				20202C2B296AC00A00CF61F9 /* ZikrFormView.swift in Sources */,
+				2055AA6E29880D70002407ED /* Extensions.swift in Sources */,
 				20305FC42974865A00904083 /* ColorGradients.swift in Sources */,
 				20895E76296AE8F1002234B6 /* ZikrListView.swift in Sources */,
 				20FE9DC02969CE2300730DDB /* ZikrRowView.swift in Sources */,

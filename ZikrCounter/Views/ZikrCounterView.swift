@@ -68,7 +68,7 @@ struct ZikrCounterView: View {
 
 struct ZikrInfoView: View {
     @ObservedRealmObject var zikr: Zikr
-    
+    @State private var popupPresented = false
     var body: some View {
         VStack {
             VStack {
@@ -92,20 +92,38 @@ struct ZikrInfoView: View {
                     .padding(.leading)
                     .padding(.trailing)
             }
-            .frame(width: 350, height: 350)
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.45)
             .background(.ultraThinMaterial.blendMode(.softLight).opacity(0.76),
                         in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .foregroundColor(.white)
             .padding(.top, 50)
+            .overlay(
+                Button(action: {
+                    withAnimation {
+                        popupPresented.toggle()
+                    }
+                }, label: {
+                    Label("More Info", systemImage: "info.circle").labelStyle(.iconOnly)
+                })
+                    .foregroundColor(.white)
+                    .opacity(0.7)
+                    .padding()
+                , alignment: .bottomTrailing)
             Button(action: reset) {
                 Label("Reset", systemImage: "arrow.clockwise.circle").labelStyle(.iconOnly).foregroundColor(.white).font(.largeTitle).fontWeight(.light)
             }
-            .opacity(0.45)
+            .opacity(0.5)
             .buttonStyle(.plain)
             .padding(.top, 33)
             .padding(.bottom, -40)
             .padding(.leading, 250)
             CounterView(zikr: zikr)
+        }
+        .popupView(horizontalPadding: 40, show: $popupPresented) {
+            Text("\(zikr.hadith)")
+                .foregroundColor(.white)
+                .opacity(0.5)
+                .multilineTextAlignment(.center)
         }
     }
 }
@@ -122,7 +140,7 @@ struct CounterView: View {
             ZStack {
                 Circle()
                     .background(.ultraThinMaterial, in: Circle())
-                    .frame(width: 300, height: 250)
+                    .frame(width: UIScreen.main.bounds.width * 0.586, height: UIScreen.main.bounds.height * 0.27)
                     .opacity(0.1)
                 CircularProgressView(
                     current: $zikr.current,
@@ -130,7 +148,7 @@ struct CounterView: View {
                     width: 10,
                     color: Color.infoColor.opacity(0.8)
                 )
-                .frame(width: 300, height: 240)
+                .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.282)
                 VStack {
                     Text("\(Int(zikr.current))")
                         .foregroundColor(
@@ -189,6 +207,29 @@ extension ZikrInfoView {
         try! realm.write {
             zikr.thaw()?.current = 0
         }
+    }
+    
+    func popupView<Content: View>(horizontalPadding: CGFloat = 40, show: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
+        
+        return self
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .overlay {
+                if show.wrappedValue {
+                    GeometryReader { proxy in
+                        
+                        Color.primary
+                            .opacity(0.15)
+                            .ignoresSafeArea()
+                        
+                        let size = proxy.size
+                        
+                        content()
+                            .frame(width: size.width - horizontalPadding, height: size.height / 1.7, alignment: .center)
+                            .cornerRadius(15)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    }
+                }
+            }
     }
 }
 
