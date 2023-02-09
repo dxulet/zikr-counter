@@ -12,9 +12,7 @@ enum ZikrMock {
     static var zikr1: Zikr {
         let zikr = Zikr()
         zikr.title = "Allahu Akbar"
-        zikr.current = 0
         zikr.target = 33
-        zikr.total = 0
         zikr.arabic = "اللّٰهُ أَكْبَر"
         zikr.pronunciation = "Allahu Akbar"
         zikr.translation = "Allah is the greatest"
@@ -25,9 +23,7 @@ enum ZikrMock {
     static var zikr2: Zikr {
         let zikr = Zikr()
         zikr.title = "Alhamdulillah"
-        zikr.current = 0
         zikr.target = 33
-        zikr.total = 0
         zikr.arabic = "اَلْحَمْدُ لِلّٰهِ‎"
         zikr.pronunciation = "Alhamdulillah"
         zikr.translation = "Praise be to Allah"

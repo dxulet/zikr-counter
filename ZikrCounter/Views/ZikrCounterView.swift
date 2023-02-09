@@ -105,9 +105,9 @@ struct ZikrInfoView: View {
                 }, label: {
                     Label("More Info", systemImage: "info.circle").labelStyle(.iconOnly)
                 })
-                    .foregroundColor(.white)
-                    .opacity(0.7)
-                    .padding()
+                .foregroundColor(.white)
+                .opacity(0.7)
+                .padding()
                 , alignment: .bottomTrailing)
             Button(action: reset) {
                 Label("Reset", systemImage: "arrow.clockwise.circle").labelStyle(.iconOnly).foregroundColor(.white).font(.largeTitle).fontWeight(.light)
@@ -120,10 +120,28 @@ struct ZikrInfoView: View {
             CounterView(zikr: zikr)
         }
         .popupView(horizontalPadding: 40, show: $popupPresented) {
-            Text("\(zikr.hadith)")
+            ZStack {
+                LinearGradient(
+                    colors: zikr.numToGradient(num: zikr.colors),
+                    startPoint: .topLeading,
+                    endPoint: .trailing)
+                Text("\(zikr.hadith)")
+                    .foregroundColor(.white)
+                    .opacity(0.8)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                    .padding(.trailing)
+            }
+            .overlay(
+                Button(action: {
+                    withAnimation { popupPresented.toggle() }
+                }, label: {
+                    Label("", systemImage: "xmark").labelStyle(.iconOnly).font(.system(size: 22))
+                })
                 .foregroundColor(.white)
-                .opacity(0.5)
-                .multilineTextAlignment(.center)
+                .opacity(0.7)
+                .padding()
+                , alignment: .topTrailing)
         }
     }
 }
@@ -209,28 +227,6 @@ extension ZikrInfoView {
         }
     }
     
-    func popupView<Content: View>(horizontalPadding: CGFloat = 40, show: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
-        
-        return self
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .overlay {
-                if show.wrappedValue {
-                    GeometryReader { proxy in
-                        
-                        Color.primary
-                            .opacity(0.15)
-                            .ignoresSafeArea()
-                        
-                        let size = proxy.size
-                        
-                        content()
-                            .frame(width: size.width - horizontalPadding, height: size.height / 1.7, alignment: .center)
-                            .cornerRadius(15)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    }
-                }
-            }
-    }
 }
 
 struct PageView<SelectionValue, Content>: View where SelectionValue: Hashable, Content: View {

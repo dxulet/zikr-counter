@@ -47,12 +47,11 @@ extension View {
                 if show.wrappedValue {
                     GeometryReader { proxy in
                         
-                        Color.primary
-                            .opacity(0.15)
+                        Color.black
+                            .blur(radius: 250)
                             .ignoresSafeArea()
                         
                         let size = proxy.size
-                        
                         
                         content()
                             .frame(width: size.width - horizontalPadding, height: size.height / 1.7, alignment: .center)

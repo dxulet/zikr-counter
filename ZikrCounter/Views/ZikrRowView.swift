@@ -38,7 +38,6 @@ struct ZikrRowView: View {
                                 .fontWeight(.medium)
                                 .font(.callout)
                         }
-                        .padding(.leading)
                     }
                     Text("\(zikr.title)")
                         .font(.headline)
