@@ -18,16 +18,17 @@ class Zikr: Object, ObjectKeyIdentifiable {
     @Persisted var target: Double = 0.0
     @Persisted var current: Double = 0.0
     @Persisted var total = 0
-    @Persisted var colors = ColorGradients.customgrad.rawValue
+    @Persisted var color = ColorGradients.customgrad.rawValue
 }
 
 extension Zikr {
     func numToGradient(num: Int) -> [Color] {
-        if num == 0 { return ColorGradients.customgrad.zikrColors }
-        else if num == 1 { return ColorGradients.blueblack.zikrColors }
-        else if num == 2 { return ColorGradients.greenblack.zikrColors }
-        else if num == 3 { return ColorGradients.tealBlack.zikrColors }
-        else if num == 4 { return ColorGradients.instaGrad.zikrColors}
-        else { return ColorGradients.zikrColor.zikrColors}
+        if num == 0 { return ColorGradients.customgrad.zikrColor }
+        else if num == 1 { return ColorGradients.instaGrad.zikrColor }
+        else if num == 2 { return ColorGradients.zikrColor.zikrColor }
+        else if num == 3 { return ColorGradients.eveningSunshine.zikrColor }
+        else if num == 4 { return ColorGradients.memairani.zikrColor }
+        else { return ColorGradients.metapolis.zikrColor }
+        print("DEBUG: \(num)")
     }
 }

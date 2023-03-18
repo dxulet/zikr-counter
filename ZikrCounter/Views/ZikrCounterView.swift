@@ -15,7 +15,7 @@ struct ZikrCounterView: View {
     @State private var menuBarPresented = false
     @ObservedObject var viewModel = ViewModel()
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         NavigationView {
             // Use a PageView to display all zikrs
@@ -28,13 +28,13 @@ struct ZikrCounterView: View {
                         ZStack {
                             // Apply gradient background
                             LinearGradient(
-                                colors: zikr.numToGradient(num: zikr.colors),
+                                colors: zikr.numToGradient(num: zikr.color),
                                 startPoint: .topLeading,
                                 endPoint: .trailing)
                             ZikrInfoView(zikr: zikr)
                         }
                     }
-                }
+                }   
                 .frame(width: UIScreen.main.bounds.width,
                        height: UIScreen.main.bounds.height)
                 .toolbar {
@@ -62,7 +62,9 @@ struct ZikrCounterView: View {
             }
             .ignoresSafeArea()
         }
-        .onAppear(perform: viewModel.loadZikrs)
+        .onAppear {
+            self.viewModel.loadZikrs()
+        }
     }
 }
 
@@ -112,7 +114,7 @@ struct ZikrInfoView: View {
             Button(action: reset) {
                 Label("Reset", systemImage: "arrow.clockwise.circle").labelStyle(.iconOnly).foregroundColor(.white).font(.largeTitle).fontWeight(.light)
             }
-            .opacity(0.5)
+            .opacity(0.6)
             .buttonStyle(.plain)
             .padding(.top, 33)
             .padding(.bottom, -40)
@@ -122,7 +124,7 @@ struct ZikrInfoView: View {
         .popupView(horizontalPadding: 40, show: $popupPresented) {
             ZStack {
                 LinearGradient(
-                    colors: zikr.numToGradient(num: zikr.colors),
+                    colors: zikr.numToGradient(num: zikr.color),
                     startPoint: .topLeading,
                     endPoint: .trailing)
                 Text("\(zikr.hadith)")
@@ -152,7 +154,7 @@ struct CounterView: View {
     private static var player: AVAudioPlayer!
     @AppStorage("vibrationEnabled") var vibrationEnabled = true
     @AppStorage("soundEnabled") var soundEnabled = true
-    
+
     var body: some View {
         Button(action: withAnimation { countUp }) {
             ZStack {
@@ -175,7 +177,7 @@ struct CounterView: View {
                         )
                         .font(.system(size: 33))
                         .fontWeight(.heavy)
-                    
+
                     Text("\(Int(zikr.total))")
                         .font(.subheadline)
                         .foregroundColor(Color.infoColor)
@@ -208,7 +210,7 @@ extension CounterView {
             playZikrSound()
         }
     }
-    
+
     // function to play sound on click
     func playZikrSound() {
         let url = Bundle.main.url(forResource: "clickSound", withExtension: "wav")
@@ -226,7 +228,7 @@ extension ZikrInfoView {
             zikr.thaw()?.current = 0
         }
     }
-    
+
 }
 
 struct PageView<SelectionValue, Content>: View where SelectionValue: Hashable, Content: View {
@@ -234,7 +236,7 @@ struct PageView<SelectionValue, Content>: View where SelectionValue: Hashable, C
     private let indexDisplayMode: PageTabViewStyle.IndexDisplayMode
     private let indexBackgroundDisplayMode: PageIndexViewStyle.BackgroundDisplayMode
     private let content: () -> Content
-    
+
     init(
         selection: Binding<SelectionValue>,
         indexDisplayMode: PageTabViewStyle.IndexDisplayMode = .automatic,
@@ -246,7 +248,7 @@ struct PageView<SelectionValue, Content>: View where SelectionValue: Hashable, C
         self.indexBackgroundDisplayMode = indexBackgroundDisplayMode
         self.content = content
     }
-    
+
     var body: some View {
         TabView(selection: $selection) {
             content()

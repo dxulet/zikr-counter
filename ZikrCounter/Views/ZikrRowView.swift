@@ -31,12 +31,16 @@ struct ZikrRowView: View {
                                                  goal: $zikr.target,
                                                  width: 4,
                                                  color: Color("zikrColor"))
-                            .frame(width: 30, height: 30)
+                            .frame(width: 35, height: 35)
+                            
                             Text("\(Int(zikr.current))")
                                 .foregroundColor(zikr.current >= zikr.target ?
                                                  Color.reachedColor : Color("zikrColor"))
                                 .fontWeight(.medium)
                                 .font(.callout)
+                                .scaledToFit()
+                                .minimumScaleFactor(0.01)
+                                .lineLimit(1)
                         }
                     }
                     Text("\(zikr.title)")

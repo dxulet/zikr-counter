@@ -11,26 +11,30 @@ import RealmSwift
 enum ColorGradients: Int, CaseIterable, PersistableEnum {
     
     case customgrad
-    case blueblack
-    case greenblack
-    case tealBlack
     case instaGrad
     case zikrColor
+    case eveningSunshine
+    case memairani
+    case metapolis
     
-    var zikrColors: [Color] {
+    var id: Int {
+        return self.rawValue
+    }
+    
+    var zikrColor: [Color] {
         switch self {
         case .customgrad:
             return [Color("lightBlue"), Color("darkBlue")]
-        case .blueblack:
-            return [Color.blue, Color.black]
-        case .greenblack:
-            return [Color.green, Color.black]
-        case .tealBlack:
-            return [Color.teal, Color.black]
         case .instaGrad:
             return [.purple, .blue]
         case .zikrColor:
-            return [Color("zikrColor")]
+            return [Color("zikrBackground")]
+        case .eveningSunshine:  
+            return [Color(hex: "#b92b27"), Color(hex: "#1565C0")]
+        case .memairani:
+            return [Color(hex: "#aa4b6b"), Color(hex: "#6b6b83"), Color(hex: "#3b8d99")]
+        case .metapolis:
+            return [Color(hex: "#659999"), Color(hex: "#f4791f")]
         }
     }
 }

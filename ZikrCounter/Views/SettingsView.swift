@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct SettingsView: View {
     @AppStorage("vibrationEnabled") var vibrationEnabled = true
@@ -13,45 +14,62 @@ struct SettingsView: View {
     @AppStorage("dailyGoalEnabled") var dailyGoalEnabled = true
     @AppStorage("dailyReminderEnabled") var dailyReminderEnabled = false
     @State var dailyReminderTime = Date(timeIntervalSince1970: 0)
+    @ObservedRealmObject var zikr = Zikr()
+    @State var selectedGradient = ColorGradients.customgrad
+    @ObservedResults(Zikr.self) var zikrs
     @AppStorage("dailyReminderTime") var dailyReminderTimeShadow: Double = 0
     
     var body: some View {
-            List {
-                Section("Zikrs") {
-                    Toggle("Vibration in every 33", isOn: $vibrationEnabled)
-                    Toggle("Sound on button click", isOn: $soundEnabled)
-                }
-                
-                Section("Notifications") {
-                    Toggle("Daily Goal", isOn: $dailyGoalEnabled)
-                    Toggle("Daily Reminder", isOn: Binding(
-                        get: { dailyReminderEnabled },
-                        set: { newValue in
-                            dailyReminderEnabled = newValue
-                            configureNotification()
-                        }
-                    ))
-                    if dailyReminderEnabled {
-                        DatePicker(
-                            "Time",
-                            selection: Binding(
-                                get: { dailyReminderTime },
-                                set: { newValue in
-                                    dailyReminderTimeShadow = newValue.timeIntervalSince1970
-                                    dailyReminderTime = newValue
-                                    configureNotification()
-                                }
-                            ),
-                            displayedComponents: .hourAndMinute
-                        )
+        List {
+            Section("Zikrs") {
+                Toggle("Vibration in every 33", isOn: $vibrationEnabled)
+                Toggle("Sound on button click", isOn: $soundEnabled)
+            }
+            
+            Section("Notifications") {
+                Toggle("Daily Goal", isOn: $dailyGoalEnabled)
+                Toggle("Daily Reminder", isOn: Binding(
+                    get: { dailyReminderEnabled },
+                    set: { newValue in
+                        dailyReminderEnabled = newValue
+                        configureNotification()
                     }
+                ))
+                if dailyReminderEnabled {
+                    DatePicker(
+                        "Time",
+                        selection: Binding(
+                            get: { dailyReminderTime },
+                            set: { newValue in
+                                dailyReminderTimeShadow = newValue.timeIntervalSince1970
+                                dailyReminderTime = newValue
+                                configureNotification()
+                            }
+                        ),
+                        displayedComponents: .hourAndMinute
+                    )
                 }
             }
-            .onAppear {
-                dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
+            
+            Section("Choose Zikr Background ") {
+                VStack {
+                    BackgroundSelectionView(selectedGradient: $selectedGradient)
+                }
+                .onChange(of: selectedGradient) { newValue in
+                    let realm = try! Realm()
+                    try! realm.write {
+                        zikr.color = newValue.rawValue
+                    }
+//                    print("DEBUG: \(zikr.color)")
+                }
             }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.large)
+        }
+        .onAppear {
+            dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
+            selectedGradient = ColorGradients(rawValue: zikr.color) ?? .customgrad
+        }
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.large)
     }
     
     func configureNotification() {

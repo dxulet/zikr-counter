@@ -16,8 +16,10 @@ class ViewModel: ObservableObject {
     func loadZikrs() {
         if !userDefaults.bool(forKey: "zikrsLoaded") {
             for zikr in ZikrMock.defaultZikrProvider {
-                try! realm.write {
-                    realm.add(zikr)
+                DispatchQueue.main.async {
+                    try! self.realm.write {
+                        self.realm.add(zikr)
+                    }
                 }
             }
             userDefaults.set(true, forKey: "zikrsLoaded")
