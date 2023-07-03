@@ -7,18 +7,21 @@
 
 import SwiftUI
 import RealmSwift
-
+ 
 struct SettingsView: View {
     @AppStorage("vibrationEnabled") var vibrationEnabled = true
     @AppStorage("soundEnabled") var soundEnabled = true
     @AppStorage("dailyGoalEnabled") var dailyGoalEnabled = true
     @AppStorage("dailyReminderEnabled") var dailyReminderEnabled = false
     @State var dailyReminderTime = Date(timeIntervalSince1970: 0)
-    @ObservedRealmObject var zikr = Zikr()
+    let realm = try! Realm()
+    @ObservedRealmObject var currentZikr: Zikr
     @State var selectedGradient = ColorGradients.customgrad
     @ObservedResults(Zikr.self) var zikrs
     @AppStorage("dailyReminderTime") var dailyReminderTimeShadow: Double = 0
-    
+    init(_ currentZikr: Zikr) {
+        self.currentZikr = currentZikr
+    }
     var body: some View {
         List {
             Section("Zikrs") {
@@ -52,21 +55,12 @@ struct SettingsView: View {
             }
             
             Section("Choose Zikr Background ") {
-                VStack {
-                    BackgroundSelectionView(selectedGradient: $selectedGradient)
-                }
-                .onChange(of: selectedGradient) { newValue in
-                    let realm = try! Realm()
-                    try! realm.write {
-                        zikr.color = newValue.rawValue
-                    }
-//                    print("DEBUG: \(zikr.color)")
-                }
+                // MARK: Use BackgroundSelectionView to enable user to 
             }
         }
         .onAppear {
             dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
-            selectedGradient = ColorGradients(rawValue: zikr.color) ?? .customgrad
+            selectedGradient = ColorGradients(rawValue: currentZikr.color) ?? .customgrad
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.large)
@@ -86,6 +80,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(ZikrMock.zikr2)
     }
 }

@@ -29,6 +29,5 @@ extension Zikr {
         else if num == 3 { return ColorGradients.eveningSunshine.zikrColor }
         else if num == 4 { return ColorGradients.memairani.zikrColor }
         else { return ColorGradients.metapolis.zikrColor }
-        print("DEBUG: \(num)")
     }
 }

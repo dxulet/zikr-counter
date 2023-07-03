@@ -15,7 +15,8 @@ struct ZikrCounterView: View {
     @State private var menuBarPresented = false
     @ObservedObject var viewModel = ViewModel()
     @Environment(\.dismiss) var dismiss
-
+    @State private var selectedItem = 0
+    
     var body: some View {
         NavigationView {
             // Use a PageView to display all zikrs
@@ -32,6 +33,7 @@ struct ZikrCounterView: View {
                                 startPoint: .topLeading,
                                 endPoint: .trailing)
                             ZikrInfoView(zikr: zikr)
+                                .tag(zikr.id)
                         }
                     }
                 }   
@@ -39,7 +41,11 @@ struct ZikrCounterView: View {
                        height: UIScreen.main.bounds.height)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: SettingsView()) {
+                        NavigationLink(
+                            destination: SettingsView(
+                                (zikrs.filter({ $0.id == selectedItem }).first ?? ZikrMock.zikr1)!
+                            )
+                        ) {
                             Image(systemName: "gearshape")
                                 .foregroundColor(.white)
                         }
@@ -58,6 +64,9 @@ struct ZikrCounterView: View {
                                 .presentationDetents([.fraction(0.6), .large])
                         }
                     }
+                }
+                .onChange(of: selectedItem) { newValue in
+                    selectedItem = newValue
                 }
             }
             .ignoresSafeArea()
